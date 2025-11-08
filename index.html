@@ -77,7 +77,8 @@
         <!-- Header -->
         <!-- NEW: Reduced padding and text size for mobile -->
         <header class="absolute top-0 left-0 right-0 p-2 sm:p-4 z-10 flex justify-between items-center w-full">
-            <h1 class="font-russo text-xl sm:text-3xl font-bold text-indigo-400">ಕಂದಮ್ಮ's Avaitor</h1>
+            <!-- ADDED ID for cheat trigger -->
+            <h1 id="game-title" class="font-russo text-xl sm:text-3xl font-bold text-indigo-400 cursor-pointer select-none">ಕಂದಮ್ಮ's Avaitor</h1>
             <div class="bg-gray-900 bg-opacity-70 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg shadow-inner">
                 <span class="text-xs sm:text-sm font-medium text-gray-400">COINS: </span>
                 <span id="coin-balance" class="text-sm sm:text-lg font-bold text-yellow-400">1000.00</span>
@@ -94,6 +95,16 @@
         
         <!-- Notification Area --><div id="notification-area" class="absolute top-24 right-4 z-50 flex flex-col gap-2">
             <!-- Notifications will be injected here --></div>
+
+        <!-- HIDDEN FOUNDER'S CODE INPUT MODAL -->
+        <div id="cheat-input-box" class="absolute inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-70">
+            <div class="bg-gray-800 p-6 rounded-xl shadow-2xl border border-indigo-500 flex flex-col gap-4 w-11/12 max-w-sm">
+                <h3 class="text-xl font-bold text-indigo-300 text-center">Enter Founder's Code</h3>
+                <input type="text" id="founder-code-input" placeholder="Code..." 
+                       class="bg-gray-900 text-yellow-300 p-3 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-center uppercase tracking-wider font-bold">
+                <button id="submit-cheat-btn" class="bg-green-600 hover:bg-green-500 py-3 rounded-lg font-bold text-white transition duration-200">Submit Code</button>
+            </div>
+        </div>
     </div>
     
     <!-- Bottom Controls Area (Scrollable) -->
@@ -170,6 +181,12 @@
         const canvas = document.getElementById('game-canvas');
         const ctx = canvas.getContext('2d');
         const gameAreaEl = document.getElementById('game-area');
+
+        // --- CHEAT ELEMENTS ---
+        const gameTitleEl = document.getElementById('game-title');
+        const cheatInputBox = document.getElementById('cheat-input-box');
+        const founderCodeInput = document.getElementById('founder-code-input');
+        const submitCheatBtn = document.getElementById('submit-cheat-btn');
         
         // --- DOM Elements for Bet Panels ---
         const betPanels = {
@@ -320,7 +337,7 @@
                     if (cashOutMultiplier < crashPoint) {
                         bet.status = 'cashed_out';
                         bet.cashOutAt = cashOutMultiplier;
-                        bet.cashOutPayout = bet.bet * cashOutMultiplier;
+                        bet.cashOutPayout = parseFloat(bet.bet) * cashOutMultiplier;
                     }
                 }
             });
@@ -415,7 +432,7 @@
             // NEW: List of all possible button classes to clean up
             const allButtonClasses = [
                 'bg-green-500', 'hover:bg-green-600', // Bet
-                'bg-red-500', 'hover:bg-red-600',     // Cancel / Waiting
+                'bg-red-500', 'hover:bg-red-600',      // Cancel / Waiting
                 'bg-yellow-500', 'hover:bg-yellow-600', 'text-gray-900', 'font-bold', // Cash Out
                 'bg-gray-500', // Cashed Out
                 'btn-disabled' // Disabled state
@@ -434,10 +451,10 @@
                 dom.buttonEl.classList.add('text-white'); // Default text color
 
                 if (gameState === 'WAITING') {
-                    if (state.hasPlacedBet) {
+                    if (state.hasPlacedBet) { // "Cancel"
                         dom.buttonEl.textContent = `Cancel`;
                         dom.buttonEl.classList.add('bg-red-500', 'hover:bg-red-600');
-                    } else {
+                    } else { // "Bet"
                         dom.buttonEl.textContent = `Bet ${betAmountValue} Coin(s)`; // CHANGED
                         dom.buttonEl.classList.add('bg-green-500', 'hover:bg-green-600');
                     }
@@ -470,7 +487,7 @@
         function updateHistoryBar() {
             historyBarEl.innerHTML = '';
             // NEW: Sliced -20 for more history, reduced padding for mobile
-            history.slice(-20).forEach(multiplier => { 
+            history.slice(-20).forEach(multiplier => {  
                 const el = document.createElement('span');
                 el.classList.add('px-2', 'py-0.5', 'sm:px-3', 'sm:py-1', 'rounded-full', 'text-xs', 'font-bold', 'shadow-md', 'bg-opacity-70', 'flex-shrink-0');
                 el.textContent = `${multiplier.toFixed(2)}x`;
@@ -498,7 +515,7 @@
         
         function drawPlane(x, y, angle) {
             // NEW: Reduced plane size for mobile
-            const s = (window.innerWidth < 640 ? 10 : 15) * window.devicePixelRatio; 
+            const s = (window.innerWidth < 640 ? 10 : 15) * window.devicePixelRatio;  
             ctx.save();
             ctx.translate(x, y);
             ctx.rotate(angle); 
@@ -766,29 +783,36 @@
             function gameLoop(timestamp) {
                 const deltaTime = (timestamp - lastUpdateTime) / 1000;
                 lastUpdateTime = timestamp;
-
-                if (gameState === 'WAITING') {
-                    waitingTimer -= deltaTime;
-                    if (waitingTimer <= 0) {
-                        startRound();
-                    }
-                } else if (gameState === 'IN_PROGRESS') {
-                    const elapsed = (timestamp - startTime) / 1000; // seconds
-                    currentMultiplier = 1 + 0.1 * Math.pow(elapsed, 2);
-                    
-                    updateLiveBets(); // Update the "pro" bet list
-                    
-                    if (currentMultiplier >= crashPoint) {
-                        endRound();
-                    }
-                } else if (gameState === 'CRASHED') {
-                    crashedTimer -= deltaTime;
-                    if (crashedTimer <= 0) {
-                        resetForNextRound();
-                    }
-                }
                 
-                updateUI();
+                // Only run game logic if cheat input is NOT visible
+                if (cheatInputBox.classList.contains('hidden')) {
+
+                    if (gameState === 'WAITING') {
+                        waitingTimer -= deltaTime;
+                        if (waitingTimer <= 0) {
+                            startRound();
+                        }
+                    } else if (gameState === 'IN_PROGRESS') {
+                        const elapsed = (timestamp - startTime) / 1000; // seconds
+                        currentMultiplier = 1 + 0.1 * Math.pow(elapsed, 2);
+                        
+                        updateLiveBets(); // Update the "pro" bet list
+                        
+                        if (currentMultiplier >= crashPoint) {
+                            endRound();
+                        }
+                    } else if (gameState === 'CRASHED') {
+                        crashedTimer -= deltaTime;
+                        if (crashedTimer <= 0) {
+                            resetForNextRound();
+                        }
+                    }
+                    
+                    updateUI();
+                } else {
+                    // When cheat is active, just keep the UI frozen
+                }
+
                 drawGraph(timestamp);
                 animationFrameId = requestAnimationFrame(gameLoop);
             }
@@ -833,6 +857,58 @@
             betStates[2] = { currentBet: 0, hasPlacedBet: false, hasCashedOut: false };
             
             generateLiveBets(); // Generate new players for next round
+        }
+        
+        // --- CHEAT LOGIC IMPLEMENTATION ---
+        
+        let cheatTapCount = 0;
+        let lastTapTime = 0;
+        const TAP_TIMEOUT = 500; // Taps must occur within 500ms of each other
+
+        function handleTitleTap() {
+            const now = performance.now();
+            
+            // If time since last tap is too long, reset the counter
+            if (now - lastTapTime > TAP_TIMEOUT) {
+                cheatTapCount = 0;
+            }
+
+            cheatTapCount++;
+            lastTapTime = now;
+            
+            // console.log("Tap count:", cheatTapCount); // Hidden console log
+
+            if (cheatTapCount >= 5) {
+                cheatTapCount = 0; // Reset counter immediately
+                showFounderCodePrompt();
+            }
+        }
+
+        function showFounderCodePrompt() {
+            // Display the hidden input box
+            cheatInputBox.classList.remove('hidden');
+            founderCodeInput.value = '';
+            founderCodeInput.focus();
+        }
+
+        function submitCode() {
+            const code = founderCodeInput.value.toLowerCase().trim();
+            
+            if (code === 'cs') {
+                const reward = 50000;
+                userCoins += reward;
+                
+                // Hide the prompt and notify the user
+                cheatInputBox.classList.add('hidden');
+                showNotification(`Founder Code Accepted! +${reward.toLocaleString()} Coins!`, 'success');
+                updateUI();
+                
+            } else {
+                // Wrong code feedback
+                showNotification("Invalid Founder's Code.", 'error');
+                founderCodeInput.value = '';
+                founderCodeInput.focus();
+            }
         }
         
         // --- Event Listeners Setup ---
@@ -940,6 +1016,15 @@
             drawGraph(performance.now()); // Redraw immediately on resize
         });
 
+        // --- CHEAT LISTENERS ---
+        gameTitleEl.addEventListener('click', handleTitleTap);
+        submitCheatBtn.addEventListener('click', submitCode);
+        founderCodeInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                submitCode();
+            }
+        });
+        
         // --- Initial Setup ---
         setupPanelListeners(1);
         setupPanelListeners(2);
@@ -951,4 +1036,3 @@
     </script>
 </body>
 </html>
-
