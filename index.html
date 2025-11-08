@@ -104,23 +104,25 @@
         <!-- NEW: Reduced padding and font sizes for mobile -->
         <div class="flex-shrink-0 bg-slate-800 p-2 sm:p-4 rounded-lg shadow-lg">
             <div class="flex justify-between items-center mb-2 sm:mb-3">
-                <button class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-md bg-gray-700 text-xs sm:text-sm font-medium hover:bg-gray-600">Bet</button>
-                <button class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-md bg-gray-700 text-xs sm:text-sm font-medium hover:bg-gray-600">Auto</button>
+                <button class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-gray-700 text-xs sm:text-sm font-medium hover:bg-gray-600">Bet</button>
+                <button class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-gray-700 text-xs sm:text-sm font-medium hover:bg-gray-600">Auto</button>
             </div>
-            <div class="flex mb-2 sm:mb-3">
-                <button id="bet-minus-1" class="bet-minus bg-gray-700 px-3 py-2 rounded-l-md hover:bg-gray-600 text-lg sm:text-xl font-bold">-</button>
-                <input type="number" id="bet-amount-1" class="bet-amount w-full bg-gray-700 text-white font-bold p-2 text-center border-y border-gray-600 focus:outline-none focus:bg-gray-600" value="1.00" min="1.00" step="0.01">
-                <button id="bet-plus-1" class="bet-plus bg-gray-700 px-3 py-2 rounded-r-md hover:bg-gray-600 text-lg sm:text-xl font-bold">+</button>
+            <!-- NEW: Restyled + / - / input buttons -->
+            <div class="flex justify-between items-center gap-2 mb-2 sm:mb-3">
+                <button id="bet-minus-1" class="bet-minus bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-600 text-lg sm:text-xl font-bold">-</button>
+                <input type="number" id="bet-amount-1" class="bet-amount w-full bg-gray-900 text-white font-bold p-2 text-center rounded-lg border-none focus:ring-2 focus:ring-indigo-500 focus:bg-gray-800 text-lg sm:text-xl" value="1.00" min="1.00" step="0.01">
+                <button id="bet-plus-1" class="bet-plus bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-600 text-lg sm:text-xl font-bold">+</button>
             </div>
             <div class="grid grid-cols-4 gap-2 mb-2 sm:mb-3">
-                <button class="quick-bet-btn quick-bet-btn-1 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm" data-panel="1" data-amount="1">1</button>
-                <button class="quick-bet-btn quick-bet-btn-1 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm" data-panel="1" data-amount="2">2</button>
-                <button class="quick-bet-btn quick-bet-btn-1 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm" data-panel="1" data-amount="5">5</button>
-                <button class="quick-bet-btn quick-bet-btn-1 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm" data-panel="1" data-amount="10">10</button>
+                <button class="quick-bet-btn quick-bet-btn-1 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm" data-panel="1" data-amount="1">1</button>
+                <button class="quick-bet-btn quick-bet-btn-1 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm" data-panel="1" data-amount="2">2</button>
+                <button class="quick-bet-btn quick-bet-btn-1 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm" data-panel="1" data-amount="5">5</button>
+                <button class="quick-bet-btn quick-bet-btn-1 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm" data-panel="1" data-amount="10">10</button>
             </div>
             
-            <button id="bet-button-1" class="bet-button mt-2 sm:mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-extrabold py-3 sm:py-4 px-4 sm:px-6 rounded-lg text-lg sm:text-xl shadow-md transition-all duration-200 transform active:scale-95" data-panel="1">
-                Bet <span id="bet-button-amount-1" class="bet-button-amount">1.00</span> Coin(s)
+            <!-- NEW: Added flex-col for multi-line text, rounded-2xl -->
+            <button id="bet-button-1" class="bet-button mt-2 sm:mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-extrabold py-3 sm:py-4 px-4 sm:px-6 rounded-2xl text-lg sm:text-xl shadow-md transition-all duration-200 transform active:scale-95 flex flex-col items-center justify-center" data-panel="1">
+                <span>Bet <span id="bet-button-amount-1" class="bet-button-amount">1.00</span> Coin(s)</span>
             </button>
         </div>
 
@@ -128,23 +130,25 @@
         <!-- NEW: Reduced padding and font sizes for mobile -->
         <div class="flex-shrink-0 bg-slate-800 p-2 sm:p-4 rounded-lg shadow-lg">
             <div class="flex justify-between items-center mb-2 sm:mb-3">
-                <button class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-md bg-gray-700 text-xs sm:text-sm font-medium hover:bg-gray-600">Bet</button>
-                <button class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-md bg-gray-700 text-xs sm:text-sm font-medium hover:bg-gray-600">Auto</button>
+                <button class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-gray-700 text-xs sm:text-sm font-medium hover:bg-gray-600">Bet</button>
+                <button class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-gray-700 text-xs sm:text-sm font-medium hover:bg-gray-600">Auto</button>
             </div>
-            <div class="flex mb-2 sm:mb-3">
-                <button id="bet-minus-2" class="bet-minus bg-gray-700 px-3 py-2 rounded-l-md hover:bg-gray-600 text-lg sm:text-xl font-bold">-</button>
-                <input type="number" id="bet-amount-2" class="bet-amount w-full bg-gray-700 text-white font-bold p-2 text-center border-y border-gray-600 focus:outline-none focus:bg-gray-600" value="1.00" min="1.00" step="0.01">
-                <button id="bet-plus-2" class="bet-plus bg-gray-700 px-3 py-2 rounded-r-md hover:bg-gray-600 text-lg sm:text-xl font-bold">+</button>
+            <!-- NEW: Restyled + / - / input buttons -->
+            <div class="flex justify-between items-center gap-2 mb-2 sm:mb-3">
+                <button id="bet-minus-2" class="bet-minus bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-600 text-lg sm:text-xl font-bold">-</button>
+                <input type="number" id="bet-amount-2" class="bet-amount w-full bg-gray-900 text-white font-bold p-2 text-center rounded-lg border-none focus:ring-2 focus:ring-indigo-500 focus:bg-gray-800 text-lg sm:text-xl" value="1.00" min="1.00" step="0.01">
+                <button id="bet-plus-2" class="bet-plus bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-600 text-lg sm:text-xl font-bold">+</button>
             </div>
             <div class="grid grid-cols-4 gap-2 mb-2 sm:mb-3">
-                <button class="quick-bet-btn quick-bet-btn-2 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm" data-panel="2" data-amount="1">1</button>
-                <button class="quick-bet-btn quick-bet-btn-2 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm" data-panel="2" data-amount="2">2</button>
-                <button class="quick-bet-btn quick-bet-btn-2 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm" data-panel="2" data-amount="5">5</button>
-                <button class="quick-bet-btn quick-bet-btn-2 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm" data-panel="2" data-amount="10">10</button>
+                <button class="quick-bet-btn quick-bet-btn-2 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm" data-panel="2" data-amount="1">1</button>
+                <button class="quick-bet-btn quick-bet-btn-2 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm" data-panel="2" data-amount="2">2</button>
+                <button class="quick-bet-btn quick-bet-btn-2 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm" data-panel="2" data-amount="5">5</button>
+                <button class="quick-bet-btn quick-bet-btn-2 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm" data-panel="2" data-amount="10">10</button>
             </div>
-
-            <button id="bet-button-2" class="bet-button mt-2 sm:mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-extrabold py-3 sm:py-4 px-4 sm:px-6 rounded-lg text-lg sm:text-xl shadow-md transition-all duration-200 transform active:scale-95" data-panel="2">
-                Bet <span id="bet-button-amount-2" class="bet-button-amount">1.00</span> Coin(s)
+            
+            <!-- NEW: Added flex-col for multi-line text, rounded-2xl -->
+            <button id="bet-button-2" class="bet-button mt-2 sm:mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-extrabold py-3 sm:py-4 px-4 sm:px-6 rounded-2xl text-lg sm:text-xl shadow-md transition-all duration-200 transform active:scale-95 flex flex-col items-center justify-center" data-panel="2">
+                <span>Bet <span id="bet-button-amount-2" class="bet-button-amount">1.00</span> Coin(s)</span>
             </button>
         </div>
 
@@ -176,7 +180,7 @@
             1: {
                 amountEl: document.getElementById('bet-amount-1'),
                 buttonEl: document.getElementById('bet-button-1'),
-                buttonAmountSpan: document.getElementById('bet-button-amount-1'),
+                buttonAmountSpan: document.getElementById('bet-button-amount-1'), // This will be stale, re-find in listeners
                 minusEl: document.getElementById('bet-minus-1'),
                 plusEl: document.getElementById('bet-plus-1'),
                 quickBetBtns: document.querySelectorAll('.quick-bet-btn-1')
@@ -184,7 +188,7 @@
             2: {
                 amountEl: document.getElementById('bet-amount-2'),
                 buttonEl: document.getElementById('bet-button-2'),
-                buttonAmountSpan: document.getElementById('bet-button-amount-2'),
+                buttonAmountSpan: document.getElementById('bet-button-amount-2'), // This will be stale, re-find in listeners
                 minusEl: document.getElementById('bet-minus-2'),
                 plusEl: document.getElementById('bet-plus-2'),
                 quickBetBtns: document.querySelectorAll('.quick-bet-btn-2')
@@ -284,9 +288,10 @@
         ];
         
         // --- State for BOTH Bet Panels ---
+        // NEW: Added betQueuedForNextRound
         let betStates = {
-            1: { currentBet: 0, hasPlacedBet: false, hasCashedOut: false },
-            2: { currentBet: 0, hasPlacedBet: false, hasCashedOut: false }
+            1: { currentBet: 0, hasPlacedBet: false, hasCashedOut: false, betQueuedForNextRound: false },
+            2: { currentBet: 0, hasPlacedBet: false, hasCashedOut: false, betQueuedForNextRound: false }
         };
 
         // --- "Pro" Live Bet Simulation ---
@@ -409,10 +414,10 @@
             }
         }
 
+        // NEW: Heavily modified updateUI function for new logic
         function updateUI() {
             coinBalanceEl.textContent = userCoins.toFixed(2);
             
-            // NEW: List of all possible button classes to clean up
             const allButtonClasses = [
                 'bg-green-500', 'hover:bg-green-600', // Bet
                 'bg-red-500', 'hover:bg-red-600',     // Cancel / Waiting
@@ -421,13 +426,10 @@
                 'btn-disabled' // Disabled state
             ];
 
-            // Update both panels
             [1, 2].forEach(panelNum => {
                 const state = betStates[panelNum];
                 const dom = betPanels[panelNum];
-                
                 const betAmountValue = parseFloat(dom.amountEl.value).toFixed(2);
-                dom.buttonAmountSpan.textContent = betAmountValue;
 
                 // Clean all dynamic classes first
                 dom.buttonEl.classList.remove(...allButtonClasses);
@@ -435,34 +437,67 @@
 
                 if (gameState === 'WAITING') {
                     if (state.hasPlacedBet) {
-                        dom.buttonEl.textContent = `Cancel`;
+                        dom.buttonEl.innerHTML = `<span class="text-xl sm:text-2xl">Cancel</span><span class="text-xs sm:text-sm font-normal block">Waiting for next round</span>`;
+                        dom.buttonEl.classList.add('bg-red-500', 'hover:bg-red-600');
+                        // Disable controls when bet is placed
+                        dom.amountEl.disabled = true;
+                        dom.minusEl.disabled = true;
+                        dom.plusEl.disabled = true;
+                        dom.quickBetBtns.forEach(btn => btn.disabled = true);
+                    } else {
+                        dom.buttonEl.innerHTML = `<span>Bet <span id="bet-button-amount-${panelNum}">${betAmountValue}</span> Coin(s)</span>`;
+                        dom.buttonEl.classList.add('bg-green-500', 'hover:bg-green-600');
+                        // Enable controls
+                        dom.amountEl.disabled = false;
+                        dom.minusEl.disabled = false;
+                        dom.plusEl.disabled = false;
+                        dom.quickBetBtns.forEach(btn => btn.disabled = false);
+                    }
+                } else if (gameState === 'IN_PROGRESS') {
+                    if (state.hasPlacedBet && !state.hasCashedOut) {
+                        dom.buttonEl.innerHTML = `<span>Cash Out ${(state.currentBet * currentMultiplier).toFixed(2)} Coin(s)</span>`;
+                        dom.buttonEl.classList.add('bg-yellow-500', 'hover:bg-yellow-600', 'text-gray-900', 'font-bold');
+                        // Disable controls during cashout
+                        dom.amountEl.disabled = true;
+                        dom.minusEl.disabled = true;
+                        dom.plusEl.disabled = true;
+                        dom.quickBetBtns.forEach(btn => btn.disabled = true);
+                    } else if (state.hasCashedOut) {
+                        dom.buttonEl.innerHTML = '<span>Cashed Out!</span>';
+                        dom.buttonEl.classList.add('btn-disabled', 'bg-gray-500');
+                        // Disable controls after cashout, until next round
+                        dom.amountEl.disabled = true;
+                        dom.minusEl.disabled = true;
+                        dom.plusEl.disabled = true;
+                        dom.quickBetBtns.forEach(btn => btn.disabled = true);
+                    } else { // No bet placed for this round, allow queueing
+                        dom.amountEl.disabled = state.betQueuedForNextRound;
+                        dom.minusEl.disabled = state.betQueuedForNextRound;
+                        dom.plusEl.disabled = state.betQueuedForNextRound;
+                        dom.quickBetBtns.forEach(btn => btn.disabled = state.betQueuedForNextRound);
+                        
+                        if (state.betQueuedForNextRound) {
+                            dom.buttonEl.innerHTML = `<span class="text-xl sm:text-2xl">Cancel</span><span class="text-xs sm:text-sm font-normal block">Waiting for next round</span>`;
+                            dom.buttonEl.classList.add('bg-red-500', 'hover:bg-red-600');
+                        } else {
+                            dom.buttonEl.innerHTML = `<span>Bet <span id="bet-button-amount-${panelNum}">${betAmountValue}</span> Coin(s)</span>`;
+                            dom.buttonEl.classList.add('bg-green-500', 'hover:bg-green-600');
+                        }
+                    }
+                } else if (gameState === 'CRASHED') {
+                    // Also allow queueing during CRASHED state
+                    dom.amountEl.disabled = state.betQueuedForNextRound;
+                    dom.minusEl.disabled = state.betQueuedForNextRound;
+                    dom.plusEl.disabled = state.betQueuedForNextRound;
+                    dom.quickBetBtns.forEach(btn => btn.disabled = state.betQueuedForNextRound);
+                    
+                    if (state.betQueuedForNextRound) {
+                        dom.buttonEl.innerHTML = `<span class="text-xl sm:text-2xl">Cancel</span><span class="text-xs sm:text-sm font-normal block">Waiting for next round</span>`;
                         dom.buttonEl.classList.add('bg-red-500', 'hover:bg-red-600');
                     } else {
-                        dom.buttonEl.textContent = `Bet ${betAmountValue} Coin(s)`; // CHANGED
+                        dom.buttonEl.innerHTML = `<span>Bet <span id="bet-button-amount-${panelNum}">${betAmountValue}</span> Coin(s)</span>`;
                         dom.buttonEl.classList.add('bg-green-500', 'hover:bg-green-600');
                     }
-                    dom.amountEl.disabled = state.hasPlacedBet;
-                    dom.minusEl.disabled = state.hasPlacedBet;
-                    dom.plusEl.disabled = state.hasPlacedBet;
-                    dom.quickBetBtns.forEach(btn => btn.disabled = state.hasPlacedBet);
-
-                } else { // IN_PROGRESS or CRASHED
-                    if (state.hasPlacedBet && !state.hasCashedOut) {
-                        dom.buttonEl.textContent = `Cash Out ${(state.currentBet * currentMultiplier).toFixed(2)} Coin(s)`; // CHANGED
-                        // CHANGED: Yellow cash out button
-                        dom.buttonEl.classList.add('bg-yellow-500', 'hover:bg-yellow-600', 'text-gray-900', 'font-bold');
-                    } else if (state.hasCashedOut) {
-                        dom.buttonEl.textContent = 'Cashed Out!';
-                        dom.buttonEl.classList.add('btn-disabled', 'bg-gray-500');
-                    } else { // No bet placed for this round
-                        // CHANGED: Red "Waiting" button
-                        dom.buttonEl.textContent = 'Waiting for Next Round';
-                        dom.buttonEl.classList.add('btn-disabled', 'bg-red-500');
-                    }
-                    dom.amountEl.disabled = true;
-                    dom.minusEl.disabled = true;
-                    dom.plusEl.disabled = true;
-                    dom.quickBetBtns.forEach(btn => btn.disabled = true);
                 }
             });
         }
@@ -825,21 +860,48 @@
             updateHistoryBar();
         }
         
+        // NEW: Modified resetForNextRound function
         function resetForNextRound() {
             gameState = 'WAITING';
             waitingTimer = 5;
             
-            betStates[1] = { currentBet: 0, hasPlacedBet: false, hasCashedOut: false };
-            betStates[2] = { currentBet: 0, hasPlacedBet: false, hasCashedOut: false };
+            [1, 2].forEach(panelNum => {
+                const state = betStates[panelNum];
+                if (state.betQueuedForNextRound) {
+                    // Bet was queued, make it active
+                    state.hasPlacedBet = true;
+                    state.betQueuedForNextRound = false;
+                    state.hasCashedOut = false;
+                    // state.currentBet is already set
+                } else {
+                    // No bet queued
+                    state.hasPlacedBet = false;
+                    state.hasCashedOut = false;
+                    state.currentBet = 0;
+                }
+            });
             
             generateLiveBets(); // Generate new players for next round
         }
         
         // --- Event Listeners Setup ---
         
+        // NEW: Modified handleBetClick function
         function handleBetClick(panelNum) {
             const state = betStates[panelNum];
-            const dom = betPanels[panelNum];
+            const betAmount = parseFloat(document.getElementById(\`bet-amount-${panelNum}\`).value);
+
+            // Check bet amount *before* checking game state
+            if (isNaN(betAmount) || betAmount < 1.00) {
+                showNotification(`Panel ${panelNum}: Bet must be at least 1.00.`, 'error');
+                return;
+            }
+            
+            // Check for coins only when placing a new bet
+            if (!state.hasPlacedBet && !state.betQueuedForNextRound && betAmount > userCoins) {
+                showNotification(`Panel ${panelNum}: Not enough coins.`, 'error');
+                return;
+            }
 
             if (gameState === 'WAITING') {
                 if (state.hasPlacedBet) { // "Cancel"
@@ -848,28 +910,47 @@
                     state.hasPlacedBet = false;
                     showNotification(`Panel ${panelNum} Bet cancelled.`, 'info');
                 } else { // "Bet"
-                    const bet = parseFloat(dom.amountEl.value);
-                    if (isNaN(bet) || bet < 1.00) {
-                        showNotification(`Panel ${panelNum}: Bet must be at least 1.00.`, 'error');
-                        return;
-                    }
-                    if (bet > userCoins) {
-                        showNotification(`Panel ${panelNum}: Not enough coins.`, 'error');
-                        return;
-                    }
-                    
-                    userCoins -= bet;
-                    state.currentBet = bet;
+                    userCoins -= betAmount;
+                    state.currentBet = betAmount;
                     state.hasPlacedBet = true;
-                    showNotification(`Panel ${panelNum}: Bet of ${bet.toFixed(2)} coins placed!`, 'success');
+                    showNotification(`Panel ${panelNum}: Bet of ${betAmount.toFixed(2)} coins placed!`, 'success');
                     playSound('bet');
                 }
-            } else if (gameState === 'IN_PROGRESS' && state.hasPlacedBet && !state.hasCashedOut) { // "Cash Out"
-                const winnings = state.currentBet * currentMultiplier;
-                userCoins += winnings;
-                state.hasCashedOut = true;
-                showNotification(`Panel ${panelNum}: Cashed out ${winnings.toFixed(2)} coins!`, 'success');
-                playSound('cashout');
+            } else if (gameState === 'IN_PROGRESS') {
+                if (state.hasPlacedBet && !state.hasCashedOut) { // "Cash Out"
+                    const winnings = state.currentBet * currentMultiplier;
+                    userCoins += winnings;
+                    state.hasCashedOut = true;
+                    showNotification(`Panel ${panelNum}: Cashed out ${winnings.toFixed(2)} coins!`, 'success');
+                    playSound('cashout');
+                } else if (!state.hasPlacedBet) { // Not in round, so queue bet
+                    if (state.betQueuedForNextRound) { // "Cancel Queue"
+                        userCoins += state.currentBet;
+                        state.currentBet = 0;
+                        state.betQueuedForNextRound = false;
+                        showNotification(`Panel ${panelNum} Next bet cancelled.`, 'info');
+                    } else { // "Queue Bet"
+                        userCoins -= betAmount;
+                        state.currentBet = betAmount;
+                        state.betQueuedForNextRound = true;
+                        showNotification(`Panel ${panelNum}: Bet of ${betAmount.toFixed(2)} coins queued!`, 'success');
+                        playSound('bet');
+                    }
+                }
+            } else if (gameState === 'CRASHED') {
+                // Also allow queueing/cancelling during CRASHED state
+                if (state.betQueuedForNextRound) { // "Cancel Queue"
+                    userCoins += state.currentBet;
+                    state.currentBet = 0;
+                    state.betQueuedForNextRound = false;
+                    showNotification(`Panel ${panelNum} Next bet cancelled.`, 'info');
+                } else { // "Queue Bet"
+                    userCoins -= betAmount;
+                    state.currentBet = betAmount;
+                    state.betQueuedForNextRound = true;
+                    showNotification(`Panel ${panelNum}: Bet of ${betAmount.toFixed(2)} coins queued!`, 'success');
+                    playSound('bet');
+                }
             }
             updateUI();
         }
@@ -883,18 +964,22 @@
 
             // Amount Input
             dom.amountEl.addEventListener('input', () => {
-                if (!state.hasPlacedBet) {
+                if (!state.hasPlacedBet && !state.betQueuedForNextRound) {
                     let val = parseFloat(dom.amountEl.value); // Read value on input
                     if (isNaN(val)) val = 1.00;
-                    dom.buttonAmountSpan.textContent = val.toFixed(2);
+                    // NEW: Re-find the span, as it might have been recreated
+                    const span = document.getElementById(\`bet-button-amount-${panelNum}\`);
+                    if (span) span.textContent = val.toFixed(2);
                 }
             });
             dom.amountEl.addEventListener('change', () => { // Catch blur
-                if (!state.hasPlacedBet) {
+                if (!state.hasPlacedBet && !state.betQueuedForNextRound) {
                     let val = parseFloat(dom.amountEl.value);
                     if (isNaN(val) || val < 1.00) val = 1.00;
                     dom.amountEl.value = val.toFixed(2);
-                    dom.buttonAmountSpan.textContent = val.toFixed(2);
+                    // NEW: Re-find the span
+                    const span = document.getElementById(\`bet-button-amount-${panelNum}\`);
+                    if (span) span.textContent = val.toFixed(2);
                 }
             });
 
@@ -905,7 +990,8 @@
                     let currentVal = parseFloat(dom.amountEl.value);
                     let newVal = Math.max(1.00, currentVal - 1.00); // Decrement by 1
                     dom.amountEl.value = newVal.toFixed(2);
-                    dom.buttonAmountSpan.textContent = newVal.toFixed(2);
+                    const span = document.getElementById(\`bet-button-amount-${panelNum}\`);
+                    if (span) span.textContent = newVal.toFixed(2);
                 }
             });
 
@@ -915,18 +1001,20 @@
                     let currentVal = parseFloat(dom.amountEl.value);
                     let newVal = Math.min(Math.floor(userCoins), currentVal + 1.00); // Increment by 1
                     dom.amountEl.value = newVal.toFixed(2);
-                    dom.buttonAmountSpan.textContent = newVal.toFixed(2);
+                    const span = document.getElementById(\`bet-button-amount-${panelNum}\`);
+                    if (span) span.textContent = newVal.toFixed(2);
                 }
             });
 
             // Quick Bet Buttons
             dom.quickBetBtns.forEach(button => {
                 button.addEventListener('click', (e) => {
-                    if (gameState === 'WAITING' && !state.hasPlacedBet) {
+                    if ((gameState === 'WAITING' && !state.hasPlacedBet) || ((gameState === 'IN_PROGRESS' || gameState === 'CRASHED') && !state.betQueuedForNextRound)) {
                         const amount = parseFloat(e.target.dataset.amount);
                         if (amount <= userCoins) {
                             dom.amountEl.value = amount.toFixed(2);
-                            dom.buttonAmountSpan.textContent = amount.toFixed(2);
+                            const span = document.getElementById(\`bet-button-amount-${panelNum}\`);
+                            if (span) span.textContent = amount.toFixed(2);
                         } else {
                             showNotification(`Panel ${panelNum}: Not enough coins.`, 'error');
                         }
