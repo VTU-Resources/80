@@ -3,15 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviator Coins</title>
+    <title>ಕಂದಮ್ಮ's Avaitor</title>
     <!-- 1. Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- 2. Load Inter font --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- 2. Load Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
     <!-- 3. Custom Styles --><style>
         body {
             font-family: 'Inter', sans-serif;
             touch-action: manipulation; /* Disable double-tap to zoom on mobile */
             background-color: #000;
+            /* Prevent text selection */
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10+ */
+            user-select: none; /* Standard */
         }
+        
+        /* NEW: Remove click/touch highlights */
+        * {
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            -moz-outline: none;
+        }
+
+        /* NEW: Game Title Font */
+        .font-russo {
+            font-family: 'Russo One', sans-serif;
+        }
+
         /* Custom styles for disabled button */
         .btn-disabled {
             opacity: 0.5;
@@ -45,33 +64,31 @@
         #main-controls-scroller::-webkit-scrollbar-track {
             background-color: rgba(0,0,0,0.1);
         }
-        
-        /* Custom toggle switch */
-        .toggle-checkbox:checked + .toggle-label {
-            background-color: #48bb78; /* green-500 */
-        }
-        .toggle-checkbox:checked + .toggle-label .toggle-dot {
-            transform: translateX(100%);
-        }
 
     </style>
 </head>
 <body class="bg-black text-white h-screen overflow-hidden flex flex-col">
 
-    <!-- Top Game Area (Fixed Height) --><div id="game-area" class="flex-shrink-0 relative w-full h-3/5">
+    <!-- Top Game Area (Fixed Height) -->
+    <!-- NEW: Changed to h-1/2 for 50/50 split on mobile, sm:h-3/5 for desktop -->
+    <div id="game-area" class="flex-shrink-0 relative w-full h-1/2 sm:h-3/5">
         <!-- Canvas for drawing the graph and plane --><canvas id="game-canvas" class="absolute inset-0 w-full h-full"></canvas>
 
-        <!-- Header --><header class="absolute top-0 left-0 right-0 p-4 z-10 flex justify-between items-center w-full">
-            <h1 class="text-2xl font-bold text-indigo-400">Aviator Coins</h1>
-            <div class="bg-gray-900 bg-opacity-70 px-4 py-2 rounded-lg shadow-inner">
-                <span class="text-sm font-medium text-gray-400">COINS: </span>
-                <span id="coin-balance" class="text-lg font-bold text-yellow-400">1000.00</span>
+        <!-- Header -->
+        <!-- NEW: Reduced padding and text size for mobile -->
+        <header class="absolute top-0 left-0 right-0 p-2 sm:p-4 z-10 flex justify-between items-center w-full">
+            <h1 class="font-russo text-xl sm:text-3xl font-bold text-indigo-400">ಕಂದಮ್ಮ's Avaitor</h1>
+            <div class="bg-gray-900 bg-opacity-70 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg shadow-inner">
+                <span class="text-xs sm:text-sm font-medium text-gray-400">COINS: </span>
+                <span id="coin-balance" class="text-sm sm:text-lg font-bold text-yellow-400">1000.00</span>
             </div>
         </header>
 
-        <!-- History of Multipliers --><div class="absolute top-16 left-0 right-0 px-4 pt-0 pb-4 z-10 h-8 flex items-center gap-2 overflow-hidden w-full">
+        <!-- History of Multipliers -->
+        <!-- NEW: Adjusted position (top-14) and item size for mobile -->
+        <div class="absolute top-14 sm:top-16 left-0 right-0 px-2 sm:px-4 pt-0 pb-4 z-10 h-8 flex items-center gap-2 overflow-hidden w-full">
             <span class="text-xs text-gray-500 font-semibold flex-shrink-0">History:</span>
-            <div id="history-bar" class="flex flex-row-reverse gap-2 flex-grow overflow-x-auto justify-end">
+            <div id="history-bar" class="flex flex-row-reverse gap-1 sm:gap-2 flex-grow overflow-x-auto justify-end">
                 <!-- History items will be injected here --></div>
         </div>
         
@@ -79,57 +96,64 @@
             <!-- Notifications will be injected here --></div>
     </div>
     
-    <!-- Bottom Controls Area (Scrollable) --><div id="main-controls-scroller" class="flex-grow w-full bg-slate-900 overflow-y-auto p-4 flex flex-col gap-4">
+    <!-- Bottom Controls Area (Scrollable) -->
+    <!-- NEW: Changed to h-1/2 for 50/50 split on mobile -->
+    <div id="main-controls-scroller" class="h-1/2 sm:flex-grow w-full bg-slate-900 overflow-y-auto p-2 sm:p-4 flex flex-col gap-3 sm:gap-4">
         
-        <!-- Bet Control 1 (main functional) --><div class="flex-shrink-0 bg-slate-800 p-4 rounded-lg shadow-lg">
-            <div class="flex justify-between items-center mb-3">
-                <button class="px-4 py-2 rounded-md bg-gray-700 text-sm font-medium hover:bg-gray-600">Bet</button>
-                <button class="px-4 py-2 rounded-md bg-gray-700 text-sm font-medium hover:bg-gray-600">Auto</button>
+        <!-- Bet Control 1 (main functional) -->
+        <!-- NEW: Reduced padding and font sizes for mobile -->
+        <div class="flex-shrink-0 bg-slate-800 p-2 sm:p-4 rounded-lg shadow-lg">
+            <div class="flex justify-between items-center mb-2 sm:mb-3">
+                <button class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-md bg-gray-700 text-xs sm:text-sm font-medium hover:bg-gray-600">Bet</button>
+                <button class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-md bg-gray-700 text-xs sm:text-sm font-medium hover:bg-gray-600">Auto</button>
             </div>
-            <div class="flex mb-3">
-                <button id="bet-minus-1" class="bet-minus bg-gray-700 px-3 py-2 rounded-l-md hover:bg-gray-600 text-xl font-bold">-</button>
-                <input type="number" id="bet-amount-1" class="bet-amount w-full bg-gray-700 text-white font-bold p-2 text-center border-y border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="1.00" min="1.00" step="0.01">
-                <button id="bet-plus-1" class="bet-plus bg-gray-700 px-3 py-2 rounded-r-md hover:bg-gray-600 text-xl font-bold">+</button>
+            <div class="flex mb-2 sm:mb-3">
+                <button id="bet-minus-1" class="bet-minus bg-gray-700 px-3 py-2 rounded-l-md hover:bg-gray-600 text-lg sm:text-xl font-bold">-</button>
+                <input type="number" id="bet-amount-1" class="bet-amount w-full bg-gray-700 text-white font-bold p-2 text-center border-y border-gray-600 focus:outline-none focus:bg-gray-600" value="1.00" min="1.00" step="0.01">
+                <button id="bet-plus-1" class="bet-plus bg-gray-700 px-3 py-2 rounded-r-md hover:bg-gray-600 text-lg sm:text-xl font-bold">+</button>
             </div>
-            <div class="grid grid-cols-4 gap-2 mb-3">
-                <button class="quick-bet-btn quick-bet-btn-1 bg-gray-600 hover:bg-gray-500 py-2 rounded-md text-sm" data-panel="1" data-amount="1">1</button>
-                <button class="quick-bet-btn quick-bet-btn-1 bg-gray-600 hover:bg-gray-500 py-2 rounded-md text-sm" data-panel="1" data-amount="2">2</button>
-                <button class="quick-bet-btn quick-bet-btn-1 bg-gray-600 hover:bg-gray-500 py-2 rounded-md text-sm" data-panel="1" data-amount="5">5</button>
-                <button class="quick-bet-btn quick-bet-btn-1 bg-gray-600 hover:bg-gray-500 py-2 rounded-md text-sm" data-panel="1" data-amount="10">10</button>
+            <div class="grid grid-cols-4 gap-2 mb-2 sm:mb-3">
+                <button class="quick-bet-btn quick-bet-btn-1 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm" data-panel="1" data-amount="1">1</button>
+                <button class="quick-bet-btn quick-bet-btn-1 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm" data-panel="1" data-amount="2">2</button>
+                <button class="quick-bet-btn quick-bet-btn-1 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm" data-panel="1" data-amount="5">5</button>
+                <button class="quick-bet-btn quick-bet-btn-1 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm" data-panel="1" data-amount="10">10</button>
             </div>
             
-            <button id="bet-button-1" class="bet-button mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-extrabold py-4 px-6 rounded-lg text-xl shadow-md transition-all duration-200 transform active:scale-95" data-panel="1">
+            <button id="bet-button-1" class="bet-button mt-2 sm:mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-extrabold py-3 sm:py-4 px-4 sm:px-6 rounded-lg text-lg sm:text-xl shadow-md transition-all duration-200 transform active:scale-95" data-panel="1">
                 Bet <span id="bet-button-amount-1" class="bet-button-amount">1.00</span> Coin(s)
             </button>
         </div>
 
-        <!-- Bet Control 2 (now functional) --><div class="flex-shrink-0 bg-slate-800 p-4 rounded-lg shadow-lg">
-            <div class="flex justify-between items-center mb-3">
-                <button class="px-4 py-2 rounded-md bg-gray-700 text-sm font-medium hover:bg-gray-600">Bet</button>
-                <button class="px-4 py-2 rounded-md bg-gray-700 text-sm font-medium hover:bg-gray-600">Auto</button>
+        <!-- Bet Control 2 (now functional) -->
+        <!-- NEW: Reduced padding and font sizes for mobile -->
+        <div class="flex-shrink-0 bg-slate-800 p-2 sm:p-4 rounded-lg shadow-lg">
+            <div class="flex justify-between items-center mb-2 sm:mb-3">
+                <button class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-md bg-gray-700 text-xs sm:text-sm font-medium hover:bg-gray-600">Bet</button>
+                <button class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-md bg-gray-700 text-xs sm:text-sm font-medium hover:bg-gray-600">Auto</button>
             </div>
-            <div class="flex mb-3">
-                <button id="bet-minus-2" class="bet-minus bg-gray-700 px-3 py-2 rounded-l-md hover:bg-gray-600 text-xl font-bold">-</button>
-                <input type="number" id="bet-amount-2" class="bet-amount w-full bg-gray-700 text-white font-bold p-2 text-center border-y border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="1.00" min="1.00" step="0.01">
-                <button id="bet-plus-2" class="bet-plus bg-gray-700 px-3 py-2 rounded-r-md hover:bg-gray-600 text-xl font-bold">+</button>
+            <div class="flex mb-2 sm:mb-3">
+                <button id="bet-minus-2" class="bet-minus bg-gray-700 px-3 py-2 rounded-l-md hover:bg-gray-600 text-lg sm:text-xl font-bold">-</button>
+                <input type="number" id="bet-amount-2" class="bet-amount w-full bg-gray-700 text-white font-bold p-2 text-center border-y border-gray-600 focus:outline-none focus:bg-gray-600" value="1.00" min="1.00" step="0.01">
+                <button id="bet-plus-2" class="bet-plus bg-gray-700 px-3 py-2 rounded-r-md hover:bg-gray-600 text-lg sm:text-xl font-bold">+</button>
             </div>
-            <div class="grid grid-cols-4 gap-2 mb-3">
-                <button class="quick-bet-btn quick-bet-btn-2 bg-gray-600 hover:bg-gray-500 py-2 rounded-md text-sm" data-panel="2" data-amount="1">1</button>
-                <button class="quick-bet-btn quick-bet-btn-2 bg-gray-600 hover:bg-gray-500 py-2 rounded-md text-sm" data-panel="2" data-amount="2">2</button>
-                <button class="quick-bet-btn quick-bet-btn-2 bg-gray-600 hover:bg-gray-500 py-2 rounded-md text-sm" data-panel="2" data-amount="5">5</button>
-                <button class="quick-bet-btn quick-bet-btn-2 bg-gray-600 hover:bg-gray-500 py-2 rounded-md text-sm" data-panel="2" data-amount="10">10</button>
+            <div class="grid grid-cols-4 gap-2 mb-2 sm:mb-3">
+                <button class="quick-bet-btn quick-bet-btn-2 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm" data-panel="2" data-amount="1">1</button>
+                <button class="quick-bet-btn quick-bet-btn-2 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm" data-panel="2" data-amount="2">2</button>
+                <button class="quick-bet-btn quick-bet-btn-2 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm" data-panel="2" data-amount="5">5</button>
+                <button class="quick-bet-btn quick-bet-btn-2 bg-gray-600 hover:bg-gray-500 py-1.5 sm:py-2 rounded-md text-xs sm:text-sm" data-panel="2" data-amount="10">10</button>
             </div>
 
-            <button id="bet-button-2" class="bet-button mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-extrabold py-4 px-6 rounded-lg text-xl shadow-md transition-all duration-200 transform active:scale-95" data-panel="2">
+            <button id="bet-button-2" class="bet-button mt-2 sm:mt-4 w-full bg-green-500 hover:bg-green-600 text-white font-extrabold py-3 sm:py-4 px-4 sm:px-6 rounded-lg text-lg sm:text-xl shadow-md transition-all duration-200 transform active:scale-95" data-panel="2">
                 Bet <span id="bet-button-amount-2" class="bet-button-amount">1.00</span> Coin(s)
             </button>
         </div>
 
-        <!-- Live Bets Panel (Pro Feature) --><div class="flex-shrink-0 bg-slate-800 bg-opacity-70 p-2 rounded-lg h-72">
+        <!-- Live Bets Panel (Pro Feature) -->
+        <div class="flex-shrink-0 bg-slate-800 bg-opacity-70 p-2 rounded-lg h-72">
             <!-- Tabs for All Bets / Previous / Top --><div class="flex justify-around border-b border-gray-700 mb-2">
-                <button class="py-2 px-4 text-sm font-semibold text-white border-b-2 border-indigo-500">All Bets</button>
-                <button class="py-2 px-4 text-sm font-semibold text-gray-400 hover:text-white">Previous</button>
-                <button class="py-2 px-4 text-sm font-semibold text-gray-400 hover:text-white">Top</button>
+                <button class="py-2 px-4 text-xs sm:text-sm font-semibold text-white border-b-2 border-indigo-500">All Bets</button>
+                <button class="py-2 px-4 text-xs sm:text-sm font-semibold text-gray-400 hover:text-white">Previous</button>
+                <button class="py-2 px-4 text-xs sm:text-sm font-semibold text-gray-400 hover:text-white">Top</button>
             </div>
             <div id="live-bets-list" class="h-full overflow-y-auto">
                 <!-- Live bets will be injected here --></div>
@@ -407,6 +431,7 @@
 
                 // Clean all dynamic classes first
                 dom.buttonEl.classList.remove(...allButtonClasses);
+                dom.buttonEl.classList.add('text-white'); // Default text color
 
                 if (gameState === 'WAITING') {
                     if (state.hasPlacedBet) {
@@ -444,9 +469,10 @@
         
         function updateHistoryBar() {
             historyBarEl.innerHTML = '';
-            history.slice(-15).forEach(multiplier => { // Show more history
+            // NEW: Sliced -20 for more history, reduced padding for mobile
+            history.slice(-20).forEach(multiplier => { 
                 const el = document.createElement('span');
-                el.classList.add('px-3', 'py-1', 'rounded-full', 'text-xs', 'font-bold', 'shadow-md', 'bg-opacity-70', 'flex-shrink-0');
+                el.classList.add('px-2', 'py-0.5', 'sm:px-3', 'sm:py-1', 'rounded-full', 'text-xs', 'font-bold', 'shadow-md', 'bg-opacity-70', 'flex-shrink-0');
                 el.textContent = `${multiplier.toFixed(2)}x`;
                 el.classList.add(getHistoryColorClass(multiplier));
                 historyBarEl.appendChild(el);
@@ -471,7 +497,8 @@
         }
         
         function drawPlane(x, y, angle) {
-            const s = 15 * window.devicePixelRatio; 
+            // NEW: Reduced plane size for mobile
+            const s = (window.innerWidth < 640 ? 10 : 15) * window.devicePixelRatio; 
             ctx.save();
             ctx.translate(x, y);
             ctx.rotate(angle); 
@@ -526,9 +553,10 @@
             const w = canvas.width;
             const h = canvas.height;
             // Padding
-            const bottomPadding = 50 * window.devicePixelRatio;
-            const topPadding = 80 * window.devicePixelRatio;
-            const sidePadding = 50 * window.devicePixelRatio;
+            // NEW: Reduced padding for mobile
+            const bottomPadding = (window.innerWidth < 640 ? 30 : 50) * window.devicePixelRatio;
+            const topPadding = (window.innerWidth < 640 ? 40 : 80) * window.devicePixelRatio;
+            const sidePadding = (window.innerWidth < 640 ? 20 : 50) * window.devicePixelRatio;
 
             // --- Get Current Theme ---
             const currentTheme = getCurrentTheme(currentMultiplier);
@@ -548,7 +576,8 @@
             
             const planeX = sidePadding + (w - 2 * sidePadding) * (duration / 10);
             const graphHeight = h - bottomPadding - topPadding;
-            const planeY = (h - bottomPadding) - graphHeight * (Math.log(planeMultiplier) / Math.log(15));
+            // NEW: Clamped planeY to prevent it from going off-screen at high multipliers
+            const planeY = Math.max(topPadding, (h - bottomPadding) - graphHeight * (Math.log(planeMultiplier) / Math.log(15)));
             const angle = -Math.atan(0.2 * duration * 0.5);
 
             // --- Draw Graph Line ---
@@ -568,7 +597,7 @@
                     const x = sidePadding + (w - 2 * sidePadding) * (t / 10); // 10 seconds to cross
                     const multiplier = 1 + 0.1 * Math.pow(t, 2); // Exponential curve
                     
-                    const y = (h - bottomPadding) - graphHeight * (Math.log(multiplier) / Math.log(15)); // Log scale
+                    const y = Math.max(topPadding, (h - bottomPadding) - graphHeight * (Math.log(multiplier) / Math.log(15))); // Clamp Y
                     
                     if (x > w - sidePadding) break;
                     
@@ -590,7 +619,7 @@
                     const t = (graphDuration / rayCount) * i;
                     const x = sidePadding + (w - 2 * sidePadding) * (t / 10);
                     const multiplier = 1 + 0.1 * Math.pow(t, 2);
-                    const y = (h - bottomPadding) - graphHeight * (Math.log(multiplier) / Math.log(15));
+                    const y = Math.max(topPadding, (h - bottomPadding) - graphHeight * (Math.log(multiplier) / Math.log(15))); // Clamp Y
                     
                     if (x > w - sidePadding) break;
                     
@@ -601,7 +630,7 @@
 
                 // --- Draw the top line ---
                 ctx.beginPath();
-                ctx.lineWidth = 4 * window.devicePixelRatio; // Reset line width
+                ctx.lineWidth = (window.innerWidth < 640 ? 2 : 4) * window.devicePixelRatio; // Thinner line on mobile
                 ctx.strokeStyle = currentTheme.graph; // Reset stroke style
                 ctx.moveTo(sidePadding, h - bottomPadding);
                 let lineLastX = sidePadding;
@@ -609,7 +638,7 @@
                 for (let t = 0; t <= graphDuration; t += 0.05) {
                     const x = sidePadding + (w - 2 * sidePadding) * (t / 10);
                     const multiplier = 1 + 0.1 * Math.pow(t, 2);
-                    const y = (h - bottomPadding) - graphHeight * (Math.log(multiplier) / Math.log(15));
+                    const y = Math.max(topPadding, (h - bottomPadding) - graphHeight * (Math.log(multiplier) / Math.log(15))); // Clamp Y
                     
                     if (x > w - sidePadding) break;
 
@@ -640,6 +669,11 @@
             let showGlow = false;
             let textYPosition = h / 2.5;
 
+            // NEW: Responsive font sizes
+            const mainFontSize = Math.min(w / 10, (window.innerWidth < 640 ? 60 : 90)) * window.devicePixelRatio;
+            const subFontSize = Math.min(w / 20, (window.innerWidth < 640 ? 24 : 40)) * window.devicePixelRatio;
+            const timerFontSize = Math.min(w / 18, (window.innerWidth < 640 ? 28 : 40)) * window.devicePixelRatio;
+
             if (gameState === 'IN_PROGRESS') {
                 mainText = `${currentMultiplier.toFixed(2)}x`;
                 showGlow = true;
@@ -652,14 +686,13 @@
             } else if (gameState === 'WAITING') {
                 // NEW: Draw Professional Waiting Timer
                 const timerText = `NEXT ROUND IN ${waitingTimer.toFixed(1)}S`;
-                const fontSize = Math.min(w / 20, 40) * window.devicePixelRatio;
-                ctx.font = `bold ${fontSize}px Inter`;
+                ctx.font = `bold ${timerFontSize}px Inter`;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
 
                 const textMetrics = ctx.measureText(timerText);
                 const textWidth = textMetrics.width;
-                const textHeight = fontSize * 1.5; // Approximate height with line spacing
+                const textHeight = timerFontSize * 1.5; // Approximate height
 
                 const boxPaddingX = 20 * window.devicePixelRatio;
                 const boxPaddingY = 15 * window.devicePixelRatio;
@@ -696,14 +729,14 @@
             
             // Draw Main Text (Multiplier)
             ctx.fillStyle = textColor;
-            ctx.font = `bold ${Math.min(w / 10, 90) * window.devicePixelRatio}px Inter`; // Bigger font
+            ctx.font = `bold ${mainFontSize}px Inter`; // Bigger font
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillText(mainText, w / 2, textYPosition);
             
             // Draw Subtext (FLEW AWAY!) if applicable
             if (subText) {
-                ctx.font = `bold ${Math.min(w / 20, 40) * window.devicePixelRatio}px Inter`;
+                ctx.font = `bold ${subFontSize}px Inter`;
                 ctx.fillStyle = textColor;
                 ctx.fillText(subText, w / 2, h / 3.2); // Position above main multiplier
             }
@@ -851,7 +884,7 @@
             // Amount Input
             dom.amountEl.addEventListener('input', () => {
                 if (!state.hasPlacedBet) {
-                    let val = parseFloat(dom.amountEl.css);
+                    let val = parseFloat(dom.amountEl.value); // Read value on input
                     if (isNaN(val)) val = 1.00;
                     dom.buttonAmountSpan.textContent = val.toFixed(2);
                 }
